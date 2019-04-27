@@ -42,30 +42,28 @@ def updatePosisi():
             turtles[i].hideturtle()
             turtles[i].goto(turtles[i].position()[0]-M,0)
             turtles[i].showturtle()
-    screen.tracer(0,1000)
-    screen.update()
-    screen.delay()
-    
             
-
 screen = tu.Screen()
 screen.setup(M,M/2)
 screen.bgcolor('light grey')
-
+screen.delay(0)
 turtles = []
 for i in range(N):
     turtles.append(tu.Turtle())
+    
 posK = list(r.sample(range(-int(M/2),int(M/2)), N)) #posisi kendaraan
 posK.sort()
 print(posK)
+velK = [v0]*N
+t = 0
+
 for i in range(N):
     turtles[i].penup()
     turtles[i].setposition(posK[i], 0)
     turtles[i].color(colors[i])
-    turtles[i].speed("slow")
+    turtles[i].speed(1)
     turtles[i].turtlesize(2,2,0)
-velK = [v0]*N
-t = 0
+
 while(t <= tmax):
     print(velK)
     updatePosisi()
