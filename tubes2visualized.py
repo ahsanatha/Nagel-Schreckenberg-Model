@@ -9,7 +9,7 @@ N = 10          #banyak kendaraan
 tmax = 1000     #waktu maksimum
 vmax = M/N      #kecepatan maksimum
 dt = 1          #step waktu
-colors = ['red','yellow','blue','white','green','brown','purple',
+colors = ['red','yellow','blue','grey','green','brown','purple',
           'navy','maroon','violet']
 
 def getJarak(i):
