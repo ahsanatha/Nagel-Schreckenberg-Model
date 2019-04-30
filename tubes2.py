@@ -1,5 +1,6 @@
 import numpy as np
 import random as r
+import numpy
 
 M = 100 #panjang lintasan
 p = 0.3 #probabilitas
@@ -32,17 +33,31 @@ def updateV(i):
         velK[i] = max(0, velK[i]-1)
         
 def updatePosisi(posK):
+    jum = 0
     for i in range(N):
+        b4 = posK[i]
         updateV(i)
         posK[i] = posK[i] + velK[i]
         if(posK[i] >= M):
             posK[i] = posK[i] - M
+        if (( (80-(M/2)) <= posK[i] <= (90-(M/2)) )):
+            jum += 1
+        if(b4 <= posAK[i] <= posK[i]):
+            lewat[i] += 1
+    return jum
             
 posK = list(r.sample(range(M), N)) #posisi kendaraan
+posAK = posK[:]
 velK = [vmax]*N
 t = 0
+kep = []
+lewat = [0]*N
+
 while(t <= tmax):
     print(posK)
-    updatePosisi(posK)
+    k = updatePosisi(posK)
+    kep.append(k)
     t += dt
-
+print('kepadatan di 80-90 = ',kep)
+print('rata rata kepadatan dikepadatan di 80-90 =',sum(kep)/len(kep))
+print('lewat = ',lewat)
