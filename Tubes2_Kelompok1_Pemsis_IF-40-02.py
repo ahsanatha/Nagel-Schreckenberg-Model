@@ -2,15 +2,17 @@ import numpy as np
 import random as r
 import turtle as tu
 
-M = 100       #panjang lintasan
-p = 0.3        #probabilitas
-v0 = 0          #kecepatan awal
-N = 10         #banyak kendaraan
-tmax = 100     #waktu maksimum
-vmax = 5     #kecepatan maksimum
-dt = 1          #step waktu
+M = 100     #panjang lintasan, fot better visualization, re-scale this to 1000
+p = 0.3     #probabilitas
+v0 = 0      #kecepatan awal
+N = 10      #banyak kendaraan
+tmax = 100  #waktu maksimum for better visualization rescale this to 500
+vmax = 5    #kecepatan maksimum for better visualization, rescale to M/N
+dt = 1      #step waktu
+
 colors = ['red','yellow','blue','grey','green','aqua','purple',
           'navy','maroon','violet']
+#notice red will never pass yellow
 
 def getJarak(i):
     if(i != N-1):
@@ -77,20 +79,25 @@ for i in range(N):
     turtles[i].setposition(posK[i], 0)
     turtles[i].color(colors[i])
     turtles[i].speed(1)
-    turtles[i].turtlesize(2,2,0)
+    #turtles[i].turtlesize(2,2,0)
     #turtles[i].shape('arrow')
-    time.append([0])
+    time.append([])
 
 while(t <= tmax):
-    print(posK)
+    print(velK)
     k = updatePosisi()
     kep.append(k)
     #print(k)
     t += dt
 
 print('done')
-print('kepadatan di 800-900',kep)
-print('rata rata kepadatan di 800-900',sum(kep)/len(kep))
-print(time)
+print('=============== 2 ================')
+print('kepadatan di 80-90 : ',kep)
+print('rata rata kepadatan di 80-90 :',sum(kep)/len(kep))
+#print(time)
+print('=============== 3 ================')
 for i in range(N):
-    print('time rata-rata lewat ke ',i,' = ',sum(time[i])/(len(time[i])))
+    if len(time[i]) > 0:
+        print('time rata-rata lewat ke ',i,' = ',sum(time[i])/(len(time[i])))
+    else :
+        print('kendaraan ke ',i,'tidak sampai satu putaran')
