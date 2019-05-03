@@ -2,12 +2,12 @@ import numpy as np
 import random as r
 import turtle as tu
 
-M = 100     #panjang lintasan, fot better visualization, re-scale this to 1000
+M = 1000     #panjang lintasan, fot better visualization, re-scale this to 1000
 p = 0.3     #probabilitas
 v0 = 0      #kecepatan awal
 N = 10      #banyak kendaraan
-tmax = 100  #waktu maksimum for better visualization rescale this to 500
-vmax = 5    #kecepatan maksimum for better visualization, rescale to M/N
+tmax = 500  #waktu maksimum for better visualization rescale this to 500
+vmax = 100    #kecepatan maksimum for better visualization, rescale to M/N
 dt = 1      #step waktu
 
 colors = ['red','yellow','blue','grey','green','aqua','purple',
@@ -33,7 +33,7 @@ def move(i):
     jarK[i] = getJarak(i)
     velK[i] = min(velK[i], jarK[i]-1)
     c = np.random.uniform(0,1)
-    if(c > p):
+    if(c < p):
         velK[i] = max(0, velK[i]-1)
     turtles[i].forward(velK[i])
 
@@ -79,7 +79,7 @@ for i in range(N):
     turtles[i].setposition(posK[i], 0)
     turtles[i].color(colors[i])
     turtles[i].speed(1)
-    #turtles[i].turtlesize(2,2,0)
+    turtles[i].turtlesize(2,2,0)
     #turtles[i].shape('arrow')
     time.append([])
 
