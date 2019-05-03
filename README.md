@@ -1,1 +1,3 @@
-# Mobil Mobilan
+# Nagel Schreckenberg Model 
+
+Implemented
